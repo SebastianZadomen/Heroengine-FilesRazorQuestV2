@@ -6,7 +6,7 @@ namespace VideoGameManager.Service
     public class GameService
     {
         private  List<Game> Games { get; set; }
-
+        
         public GameService()
         {
             Games = new List<Game>();
@@ -55,6 +55,12 @@ namespace VideoGameManager.Service
             {
                 Games.Remove(gameDelete);
             }
+        }
+
+        public int LastIdGame()
+        {
+            int numberLast = Games.Any() ? Games.Max(x => x.Id) : 0;
+            return numberLast + 1;
         }
     }
 }
