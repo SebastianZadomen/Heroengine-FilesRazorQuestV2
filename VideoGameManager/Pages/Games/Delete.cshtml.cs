@@ -5,19 +5,24 @@ using VideoGameManager.Service;
 
 namespace VideoGameManager.Pages.Games
 {
-    public class DetailsModel : PageModel
+    public class DeleteModel : PageModel
     {
         private readonly GameService GameService;
-        public Game GameSelected { get; set; }
-        public DetailsModel(GameService gameService)
+        public Game GameDelete { get; set; }
+
+        public DeleteModel(GameService gameService)
         {
             GameService = gameService;
         }
 
         public void OnGet(int id)
         {
-            GameSelected = GameService.GetById(id);
+            GameDelete = GameService.GetById(id);
         }
-        
+        public IActionResult OnPostDelete(int id)
+        {
+            GameService.Delete(id);
+            return RedirectToPage("/Games/Index");
+        }
     }
 }
