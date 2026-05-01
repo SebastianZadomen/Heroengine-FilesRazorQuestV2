@@ -20,10 +20,6 @@ namespace VideoGameManager.Pages.Games
             Games = GameService.GetAll();
 
         }
-        public IActionResult OnPostDelete(int id)
-        {
-            GameService.Delete(id); 
-            return RedirectToPage();
-        }
+
     }
 }
