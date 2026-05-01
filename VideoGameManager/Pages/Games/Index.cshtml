@@ -1,0 +1,38 @@
+﻿@page
+@model VideoGameManager.Pages.Games.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Lista de juegos</h1>
+
+    <table class="table table-bordered table-dark">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Year</th>
+                <th>Score</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+         <tbody>
+            @foreach (var game in Model.Games)
+            {
+                <tr>
+                    <th>@game.Id</th>
+                    <th>@game.Title</th>
+                    <th>@game.Genre</th>
+                    <th>@game.Year</th>
+                    <th>@game.Score</th>
+                    <th>@game.Description</th>
+                    <th><a class="bg-body-secondary" asp-action="">Detalles</a></th>
+                    <th><a class="bg-body">Edit</a></th>
+                    <th><a class="bg-danger">Eliminar</a></th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

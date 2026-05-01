@@ -5,9 +5,9 @@ namespace VideoGameManager.Pages
 {
     public class IndexModel : PageModel
     {
-        public void OnGet()
+        public IActionResult OnGet()
         {
-
+            return RedirectToPage("/Games/Index");
         }
     }
 }
