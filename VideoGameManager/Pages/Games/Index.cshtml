@@ -22,15 +22,19 @@
             @foreach (var game in Model.Games)
             {
                 <tr>
-                    <th>@game.Id</th>
-                    <th>@game.Title</th>
-                    <th>@game.Genre</th>
-                    <th>@game.Year</th>
-                    <th>@game.Score</th>
-                    <th>@game.Description</th>
-                    <th><a class="bg-body-secondary" asp-action="">Detalles</a></th>
-                    <th><a class="bg-body">Edit</a></th>
-                    <th><a class="bg-danger">Eliminar</a></th>
+                    <td>@game.Id</td>
+                    <td>@game.Title</td>
+                    <td>@game.Genre</td>
+                    <td>@game.Year</td>
+                    <td>@game.Score</td>
+                    <td>@game.Description</td>
+                    <td><a class="btn btn-info" asp-page="./Details" asp-route-id="@game.Id">Detalles</a></td>
+                    <td><a class="bg-body">Edit</a></td>
+                    <td>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@game.Id">
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>
