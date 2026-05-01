@@ -16,6 +16,9 @@
                 <th>Year</th>
                 <th>Score</th>
                 <th>Description</th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
          <tbody>
@@ -29,7 +32,7 @@
                     <td>@game.Score</td>
                     <td>@game.Description</td>
                     <td><a class="btn btn-info" asp-page="./Details" asp-route-id="@game.Id">Detalles</a></td>
-                    <td><a class="bg-body">Edit</a></td>
+                    <td><a class="btn btn-light" asp-page="./Edit" asp-route-id="@game.Id">Edit</a></td>
                     <td>
                         <form method="post" asp-page-handler="Delete" asp-route-id="@game.Id">
                             <button type="submit" class="btn btn-danger">Eliminar</button>
