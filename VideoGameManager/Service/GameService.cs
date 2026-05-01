@@ -1,12 +1,16 @@
-﻿using System.Timers;
+﻿using System.Text;
+using System.Timers;
+using System.IO;
 using VideoGameManager.Models;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace VideoGameManager.Service
 {
     public class GameService
     {
         private  List<Game> Games { get; set; }
-        
+        public string Path = @".\wwwroot\Data\activity_log.txt";
+      
         public GameService()
         {
             Games = new List<Game>();
@@ -23,6 +27,7 @@ namespace VideoGameManager.Service
         }
         public void Add(Game newGame)
         {
+            AddDataToFile("Add",newGame.Title);
             Games.Add(newGame);
         }
         public void Update(Game newGame)
@@ -38,10 +43,10 @@ namespace VideoGameManager.Service
                         item.Year = newGame.Year;
                         item.Score = newGame.Score;
                         item.Description = newGame.Description;
+                        AddDataToFile("Update", newGame.Title);
                         return;
                     }
                 }
-
             }
             else
             {
@@ -53,7 +58,9 @@ namespace VideoGameManager.Service
             var gameDelete = GetById(id);
             if (gameDelete != null)
             {
+                AddDataToFile("Delete", gameDelete.Title);
                 Games.Remove(gameDelete);
+
             }
         }
 
@@ -61,6 +68,19 @@ namespace VideoGameManager.Service
         {
             int numberLast = Games.Any() ? Games.Max(x => x.Id) : 0;
             return numberLast + 1;
+        }
+        public void AddDataToFile(string action, string title)
+        {
+            if (!File.Exists(Path))
+            {
+                File.Create(Path).Dispose(); 
+            }
+            using (StreamWriter sw = File.AppendText(Path))
+            {
+                sw.WriteLine($"[Date : {DateTime.Now}]");
+                sw.WriteLine($"[{action}]");
+                sw.WriteLine($"Game Tittle : {title}");
+            }
         }
     }
 }
