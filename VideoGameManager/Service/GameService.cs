@@ -10,10 +10,12 @@ namespace VideoGameManager.Service
     {
         private  List<Game> Games { get; set; }
         public string Path = @".\wwwroot\Data\activity_log.txt";
-      
+        public GameRepository GameRepository;
+
         public GameService()
         {
-            Games = new List<Game>();
+            GameRepository = new GameRepository();
+            Games = GameRepository.LoadAll();
         }
 
         public List<Game> GetAll()
