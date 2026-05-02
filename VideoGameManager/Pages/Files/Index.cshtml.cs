@@ -34,7 +34,10 @@ namespace VideoGameManager.Pages.Files
                     return File(fileBytesJson, "application/octet-stream", fileNameJson);
                     break;
                 case "Csv":
-                    
+                    GameService.GamesExporter.ExportToCsv(GameService.GetAll());
+                    byte[] fileBytesCsv = System.IO.File.ReadAllBytes(GameService.GamesExporter.Path);
+                    string fileNameCsv = "games.csv";
+                    return File(fileBytesCsv, "text/csv", fileNameCsv);
                     break;
                 case "Xml":
                     

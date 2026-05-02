@@ -11,11 +11,13 @@ namespace VideoGameManager.Service
         private  List<Game> Games { get; set; }
         public string Path = @".\wwwroot\Data\activity_log.txt";
         public GameRepository GameRepository;
+        public GamesExporter GamesExporter;
 
         public GameService()
         {
             GameRepository = new GameRepository();
-            Games = GameRepository.LoadAll();
+            GamesExporter = new GamesExporter();
+            Games = GameRepository.LoadAll() ?? GamesExporter.ImportFromCsv();
         }
 
         public List<Game> GetAll()
