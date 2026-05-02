@@ -40,7 +40,10 @@ namespace VideoGameManager.Pages.Files
                     return File(fileBytesCsv, "text/csv", fileNameCsv);
                     break;
                 case "Xml":
-                    
+                    GameService.GamesRanking.Export(GameService.GetAll());
+                    byte[] fileBytesXml = System.IO.File.ReadAllBytes(GameService.GamesRanking._Path);
+                    string fileNameXml = "games_ranking.xml";
+                    return File(fileBytesXml, "application/xml", fileNameXml);
                     break;
             }
             return null;

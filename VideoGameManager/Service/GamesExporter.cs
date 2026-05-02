@@ -28,6 +28,7 @@ namespace VideoGameManager.Service
                 listGame = registros;
             }
             return listGame;
+
         }
     }
 }
